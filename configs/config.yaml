@@ -1,0 +1,26 @@
+data:
+  path: "data/raw/Maternal Health Risk Data Set.xlsx"
+  age_threshold: 42
+  age_min: 18
+  test_size: 0.2
+  random_state: 42
+
+model:
+  n_estimators: [100, 200, 300]
+  max_depth: [3, 5, 7]
+  learning_rate: [0.01, 0.05, 0.1]
+  cv_splits: 5
+
+costs:
+  fn_high_risk: 50000
+  fp_high_risk: 5000
+  referral_older: 10000
+
+threshold:
+  optimal: 0.50
+  search_range: [0.50, 0.86, 0.05]
+
+weights:
+  low: 1.0
+  mid: 2.0
+  high: 5.0

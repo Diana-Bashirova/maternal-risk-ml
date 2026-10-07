@@ -1,0 +1,40 @@
+# Виртуальное окружение
+.venv/
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Данные и модели (большие файлы)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+models/*.joblib
+models/*.pkl
+models/v*/
+
+# DVC
+.dvc/cache/
+
+# IDE и OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Логи
+logs/
+*.log
+
+# Секреты
+.env
+.secrets.baseline

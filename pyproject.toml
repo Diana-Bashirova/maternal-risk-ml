@@ -1,0 +1,71 @@
+[tool.poetry]
+name = "maternal-risk-ml"
+version = "1.0.0"
+description = "Прогностическая модель оценки рисков беременных"
+authors = ["Diana Bashirova <diana@example.com>"]
+readme = "README.md"
+packages = [{include = "maternal_risk", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "<2.0.0"
+pandas = "^2.1"
+scikit-learn = "^1.4"
+xgboost = "^2.0"
+shap = "^0.46.0"
+matplotlib = "^3.8"
+seaborn = "^0.13"
+scipy = "^1.12"
+pydantic = "^2.5"
+pydantic-settings = "^2.1"
+pyyaml = "^6.0"
+joblib = "^1.3"
+loguru = "^0.7"
+openpyxl = "^3.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-cov = "^4.1"
+ruff = "^0.3"
+mypy = "^1.8"
+pre-commit = "^3.6"
+ipykernel = "^6.29"
+jupyter = "^1.0"
+bandit = "^1.7"
+pip-audit = "^2.6"
+detect-secrets = "^1.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# ====== Линтеры ======
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP", "N", "SIM"]
+ignore = ["E501", "N803", "N806"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["maternal_risk"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+
+[[tool.mypy.overrides]]
+module = ["shap.*", "xgboost.*", "seaborn.*", "numpy.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=src/maternal_risk --cov-report=term-missing"
+
+[tool.bandit]
+exclude_dirs = ["tests", "notebooks"]
+skips = ["B101"]
+targets = ["src"]
